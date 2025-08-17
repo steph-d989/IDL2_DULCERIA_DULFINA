@@ -20,6 +20,9 @@ def render_form():
         if submitted:
             try:
                 product = create_product(nombre, precio, categorias, en_venta_label)
-                st.success(f"Producto '{product.nombre}' guardado correctamente.")
+                st.success("Felicidades su producto se agregó.")
             except Exception as e:
-                st.error(str(e))
+                if "precio" in str(e).lower():
+                    st.error("Por favor verifique el campo del precio.")
+                else:
+                    st.error("Lo sentimos no pudo crear este producto.")
